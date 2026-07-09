@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOKO COFFEE | Teman Favorit Segala Rutinitasmu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -14,6 +14,10 @@
             --light-bg: #f5f5f5;
             --text-dark: #212121;
             --text-light: #ffffff;
+            --gofood-red: #ee2737;
+            --grab-green: #00b14f;
+            --shopee-orange: #ee4d2d;
+            --border-color: #e0e0e0;
         }
         
         * {
@@ -105,13 +109,30 @@
             border-radius: 30px;
             font-size: 1.1rem;
             transition: transform 0.3s, box-shadow 0.3s;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
+
+        .btn-order {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .btn-gofood { background-color: var(--gofood-red); }
+        .btn-grabfood { background-color: var(--grab-green); }
+        .btn-shopeefood { background-color: var(--shopee-orange); }
 
         /* Section Title */
         .section-title {
@@ -170,9 +191,18 @@
             font-size: 1.1rem;
             color: #555;
         }
+        
+        .founder-info {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
 
-        /* Menu Section */
-        .menu {
+        /* Menu Rekomendasi Section */
+        .menu-rekomendasi {
             padding: 100px 5%;
             background-color: var(--light-bg);
         }
@@ -215,15 +245,7 @@
             padding: 0 15px;
             margin-bottom: 15px;
         }
-
-        .price {
-            font-weight: 700;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
+        
         .btn-outline {
             padding: 8px 20px;
             border: 2px solid var(--primary-color);
@@ -232,11 +254,150 @@
             font-weight: 600;
             border-radius: 20px;
             transition: all 0.3s;
+            display: inline-block;
         }
 
         .btn-outline:hover {
             background-color: var(--primary-color);
             color: #fff;
+        }
+
+        /* FULL MENU SECTION (NEW) */
+        .full-menu {
+            padding: 80px 5%;
+            background-color: #ffffff; /* Clean white bg for the menu */
+        }
+
+        .full-menu-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .full-menu-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .menu-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: #555;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-color: #1a1a1a;
+        }
+
+        .full-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .full-menu-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        
+        .full-menu-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .full-menu-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-body h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .card-body .desc {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+        .card-body .category {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .card-body .price-row {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            text-transform: uppercase;
+        }
+
+        /* Order Section */
+        .order-links {
+            padding: 80px 5%;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .order-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .order-container h3 {
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
         }
 
         /* Locations */
@@ -252,20 +413,22 @@
 
         .loc-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             margin-top: 40px;
         }
 
         .loc-card {
             background-color: rgba(255,255,255,0.05);
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             border-left: 4px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
         }
 
         .loc-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--accent-color);
         }
@@ -273,12 +436,19 @@
         .loc-card p {
             margin-bottom: 10px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
+            font-size: 0.95rem;
         }
 
         .loc-card i {
             color: var(--accent-color);
+            margin-top: 4px;
+        }
+        
+        .loc-action {
+            margin-top: auto;
+            padding-top: 20px;
         }
 
         /* Footer */
@@ -325,11 +495,19 @@
                 flex-direction: column;
             }
             .nav-links {
-                display: none; /* In a real app, implement hamburger menu */
+                display: none; 
             }
             .hero h1 {
                 font-size: 2.8rem;
             }
+            .order-container {
+                padding: 30px 20px;
+            }
+        }
+        
+        /* Hide class for JS filtering */
+        .hide-item {
+            display: none !important;
         }
     </style>
 </head>
@@ -340,15 +518,153 @@
         <ul class="nav-links">
             <li><a href="#home">Beranda</a></li>
             <li><a href="#about">Tentang Kami</a></li>
-            <li><a href="#menu">Menu</a></li>
+            <li><a href="#menu-rekomendasi">Menu</a></li>
+            <li><a href="#order">Order Online</a></li>
             <li><a href="#locations">Lokasi</a></li>
         </ul>
     </header>
 
     <section class="hero" id="home">
-        <h1>Awali Harimu Bersama Kami</h1>
-        <p>Menyajikan perpaduan sempurna biji kopi pilihan dengan sentuhan rasa yang pas untuk menemani setiap rutinitas dan momen bahagiamu.</p>
-        <a href="#menu" class="btn">Lihat Menu Favorit</a>
+        <h1>Biji Kopi Pilihan, Racikan Sang Juara</h1>
+        <p>Hadir menemani setiap rutinitasmu dengan kopi berkualitas dari pengalaman satu dekade sang founder, Igo.</p>
+        <a href="#order" class="btn"><i class="fas fa-motorcycle"></i> Pesan Sekarang</a>
+    </section>
+
+    <!-- SECTION: REKOMENDASI MENU (DIPERTAHANKAN) -->
+    <section class="menu-rekomendasi" id="menu-rekomendasi">
+        <h2 class="section-title">Rekomendasi Favorit</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=500&q=60" alt="Es Kopi Susu Aren">
+                <h3>Kopi Smooth Aren</h3>
+                <p>Espresso premium berpadu dengan susu segar dan gula aren asli yang legit dan creamy. Best seller kami!</p>
+                <a href="#order" class="btn-outline">Order via App</a>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60" alt="Cappucino">
+                <h3>Iced Cappucino</h3>
+                <p>Keseimbangan sempurna antara espresso pekat dan foam susu yang lembut menyegarkan.</p>
+                <a href="#order" class="btn-outline">Order via App</a>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=60" alt="Iced Blend Vanilla">
+                <h3>Vanilla Latte Iced Blend</h3>
+                <p>Kreasi minuman es blend vanilla yang manis dan menyegarkan harimu.</p>
+                <a href="#order" class="btn-outline">Order via App</a>
+            </div>
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=500&q=60" alt="Choco Hazelnut">
+                <h3>Choco Hazelnut</h3>
+                <p>Cokelat asli berpadu dengan gurihnya hazelnut, favorit utama penikmat non-coffee.</p>
+                <a href="#order" class="btn-outline">Order via App</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FULL MENU (BARU - SESUAI GAMBAR) -->
+    <section class="full-menu" id="full-menu">
+        <div class="full-menu-header">
+            <h2>Koko Coffee Menu</h2>
+        </div>
+        
+        <!-- Filter Kategori -->
+        <div class="menu-filters" id="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="espresso-hot">Espresso Hot base</button>
+            <button class="filter-btn" data-filter="espresso-ice">Espresso ice base</button>
+            <button class="filter-btn" data-filter="espresso-blend">Espresso blend base</button>
+            <button class="filter-btn" data-filter="non-coffee">Non coffee base</button>
+            <button class="filter-btn" data-filter="ice-blend">Ice Blend base</button>
+            <button class="filter-btn" data-filter="snack">Snack</button>
+        </div>
+
+        <!-- Grid Full Menu -->
+        <div class="full-menu-grid" id="full-menu-grid">
+            
+            <!-- Item 1 -->
+            <div class="full-menu-card" data-category="espresso-hot">
+                <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=500&q=60" alt="Espresso Single">
+                <div class="card-body">
+                    <h4>Espresso Single</h4>
+                    <p class="desc">Saripati Kopi</p>
+                    <p class="category">Espresso Hot base</p>
+                    <div class="price-row">
+                        <span>PRICE</span>
+                        <span>15 K</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="full-menu-card" data-category="espresso-hot">
+                <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=500&q=60" alt="Americano">
+                <div class="card-body">
+                    <h4>Americano</h4>
+                    <p class="desc">Kopi Hitam</p>
+                    <p class="category">Espresso Hot base</p>
+                    <div class="price-row">
+                        <span>PRICE</span>
+                        <span>17 K</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="full-menu-card" data-category="espresso-hot">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60" alt="Cappucino">
+                <div class="card-body">
+                    <h4>Cappucino</h4>
+                    <p class="desc">strong Kopi susu</p>
+                    <p class="category">Espresso Hot base</p>
+                    <div class="price-row">
+                        <span>PRICE</span>
+                        <span>23 K</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="full-menu-card" data-category="espresso-hot">
+                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=500&q=60" alt="Cafe Latte">
+                <div class="card-body">
+                    <h4>Cafe Latte</h4>
+                    <p class="desc">Kopi susu</p>
+                    <p class="category">Espresso Hot base</p>
+                    <div class="price-row">
+                        <span>PRICE</span>
+                        <span>23 K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Item Dummy untuk Filter Lainnya -->
+            <div class="full-menu-card" data-category="espresso-ice">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=60" alt="Iced Americano">
+                <div class="card-body">
+                    <h4>Iced Americano</h4>
+                    <p class="desc">Kopi Hitam Dingin</p>
+                    <p class="category">Espresso ice base</p>
+                    <div class="price-row">
+                        <span>PRICE</span>
+                        <span>19 K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="full-menu-card" data-category="non-coffee">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=60" alt="Matcha Latte">
+                <div class="card-body">
+                    <h4>Matcha Latte</h4>
+                    <p class="desc">Green Tea Spesial</p>
+                    <p class="category">Non coffee base</p>
+                    <div class="price-row">
+                        <span>PRICE</span>
+                        <span>25 K</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <section class="about" id="about">
@@ -357,97 +673,122 @@
         </div>
         <div class="about-text">
             <h2 class="section-title" style="text-align: left;">Cerita KOKO</h2>
-            <p>Berawal dari sebuah kedai nyaman di Cikoko, Pancoran, <strong>KOKO Coffee</strong> hadir dengan satu misi sederhana: menjadi teman terbaik bagi setiap aktivitasmu. Dari pagi yang penuh semangat hingga malam yang menenangkan.</p>
-            <p>Kami bangga menyajikan varian kopi Nusantara berkualitas tinggi, di-roast dengan presisi, dan diracik oleh barista penuh dedikasi. Tidak suka kopi? Tenang, kami juga memiliki varian non-coffee yang siap menyegarkan harimu.</p>
-            <a href="https://instagram.com/kokocoffee.id" target="_blank" class="btn" style="background-color: var(--primary-color); color: white;">Follow Instagram Kami</a>
+            <div class="founder-info">
+                <p><strong>Didirikan oleh Igo</strong> — Seorang juara barista dengan pengalaman lebih dari satu dekade dari junior hingga barista senior di berbagai coffee shop ternama.</p>
+            </div>
+            <p>Berawal dari kawasan Jakarta Selatan, <strong>KOKO Coffee</strong> hadir dengan satu misi sederhana: menyajikan kopi berkualitas tinggi dengan racikan terbaik untuk menjadi teman favorit segala rutinitasmu.</p>
+            <p>Berkat konsistensi dan racikan biji kopi pilihan, kami terus berkembang dan membuka beberapa cabang (*franchise*) untuk lebih dekat denganmu.</p>
+            <a href="https://instagram.com/kokocoffee.id" target="_blank" class="btn" style="background-color: var(--primary-color); color: white;"><i class="fab fa-instagram"></i> Follow @kokocoffee.id</a>
         </div>
     </section>
 
-    <section class="menu" id="menu">
-        <h2 class="section-title">Menu Andalan Kami</h2>
-        <div class="menu-grid">
-            <!-- Menu 1 -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=500&q=60" alt="Es Kopi Susu Aren">
-                <h3>Kopi Smooth Aren</h3>
-                <p>Espresso premium berpadu dengan susu segar dan gula aren asli yang legit dan creamy.</p>
-                <span class="price">Rp 16.000</span>
-                <a href="#locations" class="btn-outline">Pesan Sekarang</a>
-            </div>
-            <!-- Menu 2 -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60" alt="Cappucino">
-                <h3>Iced Cappucino</h3>
-                <p>Keseimbangan sempurna antara espresso pekat dan foam susu yang lembut menyegarkan.</p>
-                <span class="price">Rp 15.000</span>
-                <a href="#locations" class="btn-outline">Pesan Sekarang</a>
-            </div>
-            <!-- Menu 3 -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=60" alt="Iced Blend Vanilla">
-                <h3>Vanilla Latte Iced Blend</h3>
-                <p>Kreasi minuman es blend vanilla dengan topping boba dan puding yang kenyal.</p>
-                <span class="price">Rp 13.200</span>
-                <a href="#locations" class="btn-outline">Pesan Sekarang</a>
-            </div>
-            <!-- Menu 4 -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=500&q=60" alt="Choco Hazelnut">
-                <h3>Choco Hazelnut</h3>
-                <p>Cokelat asli berpadu dengan gurihnya hazelnut, favorit utama penikmat non-coffee.</p>
-                <span class="price">Rp 15.000</span>
-                <a href="#locations" class="btn-outline">Pesan Sekarang</a>
-            </div>
+    <!-- PENGGANTI LINKTREE -->
+    <section class="order-links" id="order">
+        <h2 class="section-title">Pesan & Nikmati Sekarang</h2>
+        <div class="order-container">
+            <h3>Pilih Platform Favoritmu</h3>
+            
+            <a href="https://gofood.co.id/id/jakarta/restaurant/koko-coffee-pancoran-b485906d-7836-4c40-96f3-8f0a07e4d8fb" target="_blank" class="btn btn-order btn-gofood">
+                <i class="fas fa-motorcycle"></i> Order via GoFood
+            </a>
+            
+            <a href="https://food.grab.com/id/en/restaurant/koko-coffee-cikoko-delivery/6-CYXUK2JHTGE2C2" target="_blank" class="btn btn-order btn-grabfood">
+                <i class="fas fa-motorcycle"></i> Order via GrabFood
+            </a>
+            
+            <a href="https://shopeefood.co.id/" target="_blank" class="btn btn-order btn-shopeefood">
+                <i class="fas fa-shopping-bag"></i> Order via ShopeeFood
+            </a>
+            
+            <a href="https://wa.me/6281311094393" target="_blank" class="btn btn-order" style="background-color: #25D366; color: white;">
+                <i class="fab fa-whatsapp"></i> Chat WhatsApp (Pancoran)
+            </a>
         </div>
     </section>
 
     <section class="locations" id="locations">
-        <h2 class="section-title">Temukan Kami</h2>
+        <h2 class="section-title">Temukan Cabang Kami</h2>
         <div class="loc-grid">
+            
+            <!-- Lokasi 1 -->
             <div class="loc-card">
-                <h3>KOKO Coffee Pancoran</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Jl. Cikoko Brt. Dalam I No.2, Pancoran, Jakarta Selatan</p>
-                <p><i class="fas fa-clock"></i> Buka Setiap Hari: 09:00 - 21:00</p>
-                <p><i class="fab fa-whatsapp"></i> 0813-1109-4393</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://gofood.co.id" target="_blank" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">Order via GoFood</a>
+                <h3>Koko Coffee Pancoran</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span>Jl. Cikoko Brt. Dalam I Kel No.2, RT.4/RW.3, Cikoko, Kec. Pancoran, Jakarta Selatan 12770</span></p>
+                <p><i class="fas fa-clock"></i> <span>Buka Setiap Hari: 09:00 - 21:00</span></p>
+                <p><i class="fab fa-whatsapp"></i> <span>0813-1109-4393</span></p>
+                <div class="loc-action">
+                    <a href="https://www.waze.com/live-map/directions/id/daerah-khusus-ibukota-jakarta/koko-coffee-pancoran?to=place.ChIJGZ4swePzaS4RywJMFMXLb6o" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.8rem; width: 100%;"><i class="fas fa-location-arrow"></i> Buka di Waze</a>
                 </div>
             </div>
+
+            <!-- Lokasi 2 -->
             <div class="loc-card">
-                <h3>KOKO Coffee Tengah Raya</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Area Tengah Raya, Jakarta</p>
-                <p><i class="fas fa-clock"></i> Buka Setiap Hari: 10:00 - Tutup</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://gofood.co.id" target="_blank" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">Order via GoFood</a>
+                <h3>Koko Coffee Warung Buncit</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span>Jln Warung Buncit Raya, Kalibata, Jakarta Selatan</span></p>
+                <p><i class="fas fa-star"></i> <span>Cabang Franchise</span></p>
+                <div class="loc-action">
+                     <a href="https://maps.google.com/?q=Koko+Coffee+Warung+Buncit" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.8rem; width: 100%;"><i class="fas fa-map"></i> Buka di Gmaps</a>
                 </div>
             </div>
+            
+            <!-- Lokasi 3 -->
             <div class="loc-card">
-                <h3>KOKO Coffee Duren Tiga</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Area Duren Tiga, Jakarta Selatan</p>
-                <p><i class="fas fa-clock"></i> Buka Setiap Hari: 10:00 - Tutup</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://gofood.co.id" target="_blank" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">Order via GoFood</a>
+                <h3>Koko Coffee Poltangan</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span>Gg. Langgar II No.7. RT07/10, RT.7/RW.10, Pejaten Timur, Ps. Minggu, Kota Jakarta Selatan, DKI Jakarta 12510</span></p>
+                <p><i class="fas fa-clock"></i> <span>Buka - Tutup 22:00</span></p>
+                <p><i class="fab fa-whatsapp"></i> <span>0813-1109-4393</span></p>
+                <div class="loc-action">
+                    <a href="https://maps.google.com/?q=Koko+Coffee+Poltangan" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.8rem; width: 100%;"><i class="fas fa-map"></i> Buka di Gmaps</a>
                 </div>
             </div>
+            
+            <!-- Lokasi 4 -->
+            <div class="loc-card">
+                <h3>Koko Coffee Duren Tiga</h3>
+                <p><i class="fas fa-map-marker-alt"></i> <span>Jl. Duren Tiga Selatan No.7 1, RT.7/RW.1, Kalibata, Kec. Pancoran, Kota Jakarta Selatan, DKI Jakarta 12740</span></p>
+                <p><i class="fas fa-clock"></i> <span>Buka - Tutup 21:00</span></p>
+                <div class="loc-action">
+                    <a href="https://maps.google.com/?q=Koko+Coffee+Duren+Tiga" target="_blank" class="btn" style="padding: 5px 15px; font-size: 0.8rem; width: 100%;"><i class="fas fa-map"></i> Buka di Gmaps</a>
+                </div>
+            </div>
+            
         </div>
     </section>
 
     <footer>
         <div class="social-links">
             <a href="https://instagram.com/kokocoffee.id" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="https://linktr.ee/Kokocoffee.id" target="_blank"><i class="fas fa-link"></i></a>
         </div>
         <p>&copy; 2026 KOKO Coffee Indonesia. All Rights Reserved.</p>
     </footer>
 
+    <!-- SCRIPT UNTUK FILTER MENU -->
     <script>
-        // Smooth Scrolling setup if needed (fallback)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        document.addEventListener("DOMContentLoaded", function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const menuCards = document.querySelectorAll('.full-menu-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 1. Remove active class from all buttons
+                    filterBtns.forEach(button => button.classList.remove('active'));
+                    // 2. Add active class to clicked button
+                    btn.classList.add('active');
+
+                    // 3. Get the filter value
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // 4. Show/Hide cards based on category
+                    menuCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || filterValue === cardCategory) {
+                            card.classList.remove('hide-item');
+                        } else {
+                            card.classList.add('hide-item');
+                        }
+                    });
                 });
             });
         });
