@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOKO COFFEE | Teman Favorit Segala Rutinitasmu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Mengganti font Playfair Display menjadi Montserrat untuk mencocokkan dengan logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -37,7 +38,7 @@
         /* Navbar */
         header {
             background-color: var(--primary-color);
-            padding: 1rem 5%;
+            padding: 10px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -48,12 +49,16 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            color: var(--accent-color);
-            font-size: 1.8rem;
+        .logo-container {
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: 2px;
+        }
+
+        .nav-logo {
+            max-height: 55px; /* Disesuaikan agar proporsional di navbar */
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -87,10 +92,12 @@
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
             font-size: 4rem;
             margin-bottom: 1rem;
             animation: fadeInDown 1s ease-out;
+            text-transform: uppercase;
         }
 
         .hero p {
@@ -137,11 +144,13 @@
         /* Section Title */
         .section-title {
             text-align: center;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
             font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 3rem;
             position: relative;
+            text-transform: uppercase;
         }
 
         .section-title::after {
@@ -237,6 +246,8 @@
             font-size: 1.5rem;
             color: var(--primary-color);
             margin: 15px 0 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         .menu-card p {
@@ -262,10 +273,10 @@
             color: #fff;
         }
 
-        /* FULL MENU SECTION (NEW) */
+        /* FULL MENU SECTION */
         .full-menu {
             padding: 80px 5%;
-            background-color: #ffffff; /* Clean white bg for the menu */
+            background-color: #ffffff; 
         }
 
         .full-menu-header {
@@ -274,7 +285,8 @@
         }
 
         .full-menu-header h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
             font-size: 2rem;
             letter-spacing: 2px;
             color: var(--text-dark);
@@ -348,7 +360,8 @@
         }
 
         .card-body h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             font-size: 1.2rem;
             color: #2c3e50;
             margin-bottom: 5px;
@@ -396,7 +409,8 @@
         .order-container h3 {
             margin-bottom: 25px;
             color: var(--primary-color);
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
             font-size: 1.8rem;
         }
 
@@ -428,6 +442,8 @@
         }
 
         .loc-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--accent-color);
@@ -503,6 +519,9 @@
             .order-container {
                 padding: 30px 20px;
             }
+            .nav-logo {
+                max-height: 45px;
+            }
         }
         
         /* Hide class for JS filtering */
@@ -514,7 +533,10 @@
 <body>
 
     <header>
-        <a href="#" class="logo">KOKO COFFEE</a>
+        <!-- Mengganti Teks Menjadi Logo Gambar -->
+        <a href="#" class="logo-container">
+            <img src="icon_koko_coffe.jpg" alt="KOKO COFFEE Logo" class="nav-logo">
+        </a>
         <ul class="nav-links">
             <li><a href="#home">Beranda</a></li>
             <li><a href="#about">Tentang Kami</a></li>
@@ -530,7 +552,7 @@
         <a href="#order" class="btn"><i class="fas fa-motorcycle"></i> Pesan Sekarang</a>
     </section>
 
-    <!-- SECTION: REKOMENDASI MENU (DIPERTAHANKAN) -->
+    <!-- SECTION: REKOMENDASI MENU -->
     <section class="menu-rekomendasi" id="menu-rekomendasi">
         <h2 class="section-title">Rekomendasi Favorit</h2>
         <div class="menu-grid">
@@ -561,7 +583,7 @@
         </div>
     </section>
 
-    <!-- SECTION: FULL MENU (BARU - SESUAI GAMBAR) -->
+    <!-- SECTION: FULL MENU -->
     <section class="full-menu" id="full-menu">
         <div class="full-menu-header">
             <h2>Koko Coffee Menu</h2>
@@ -581,7 +603,6 @@
         <!-- Grid Full Menu -->
         <div class="full-menu-grid" id="full-menu-grid">
             
-            <!-- Item 1 -->
             <div class="full-menu-card" data-category="espresso-hot">
                 <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=500&q=60" alt="Espresso Single">
                 <div class="card-body">
@@ -595,7 +616,6 @@
                 </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="full-menu-card" data-category="espresso-hot">
                 <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=500&q=60" alt="Americano">
                 <div class="card-body">
@@ -609,7 +629,6 @@
                 </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="full-menu-card" data-category="espresso-hot">
                 <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=60" alt="Cappucino">
                 <div class="card-body">
@@ -623,7 +642,6 @@
                 </div>
             </div>
 
-            <!-- Item 4 -->
             <div class="full-menu-card" data-category="espresso-hot">
                 <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=500&q=60" alt="Cafe Latte">
                 <div class="card-body">
@@ -637,7 +655,6 @@
                 </div>
             </div>
             
-            <!-- Item Dummy untuk Filter Lainnya -->
             <div class="full-menu-card" data-category="espresso-ice">
                 <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=60" alt="Iced Americano">
                 <div class="card-body">
@@ -710,7 +727,6 @@
         <h2 class="section-title">Temukan Cabang Kami</h2>
         <div class="loc-grid">
             
-            <!-- Lokasi 1 -->
             <div class="loc-card">
                 <h3>Koko Coffee Pancoran</h3>
                 <p><i class="fas fa-map-marker-alt"></i> <span>Jl. Cikoko Brt. Dalam I Kel No.2, RT.4/RW.3, Cikoko, Kec. Pancoran, Jakarta Selatan 12770</span></p>
@@ -721,7 +737,6 @@
                 </div>
             </div>
 
-            <!-- Lokasi 2 -->
             <div class="loc-card">
                 <h3>Koko Coffee Warung Buncit</h3>
                 <p><i class="fas fa-map-marker-alt"></i> <span>Jln Warung Buncit Raya, Kalibata, Jakarta Selatan</span></p>
@@ -731,7 +746,6 @@
                 </div>
             </div>
             
-            <!-- Lokasi 3 -->
             <div class="loc-card">
                 <h3>Koko Coffee Poltangan</h3>
                 <p><i class="fas fa-map-marker-alt"></i> <span>Gg. Langgar II No.7. RT07/10, RT.7/RW.10, Pejaten Timur, Ps. Minggu, Kota Jakarta Selatan, DKI Jakarta 12510</span></p>
@@ -742,7 +756,6 @@
                 </div>
             </div>
             
-            <!-- Lokasi 4 -->
             <div class="loc-card">
                 <h3>Koko Coffee Duren Tiga</h3>
                 <p><i class="fas fa-map-marker-alt"></i> <span>Jl. Duren Tiga Selatan No.7 1, RT.7/RW.1, Kalibata, Kec. Pancoran, Kota Jakarta Selatan, DKI Jakarta 12740</span></p>
@@ -760,7 +773,7 @@
             <a href="https://instagram.com/kokocoffee.id" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://linktr.ee/Kokocoffee.id" target="_blank"><i class="fas fa-link"></i></a>
         </div>
-        <p>&copy; 2026 KOKO Coffee Indonesia. All Rights Reserved.</p>
+        <p>© 2026 KOKO Coffee Indonesia. All Rights Reserved.</p>
     </footer>
 
     <!-- SCRIPT UNTUK FILTER MENU -->
@@ -771,15 +784,11 @@
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // 1. Remove active class from all buttons
                     filterBtns.forEach(button => button.classList.remove('active'));
-                    // 2. Add active class to clicked button
                     btn.classList.add('active');
 
-                    // 3. Get the filter value
                     const filterValue = btn.getAttribute('data-filter');
 
-                    // 4. Show/Hide cards based on category
                     menuCards.forEach(card => {
                         const cardCategory = card.getAttribute('data-category');
                         
