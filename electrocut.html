@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrocut Barbershop | Modern & Precision Grooming</title>
+    
+    <!-- Menggunakan font Montserrat untuk tajuk yang tebal dan modern, Inter untuk teks body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-card: #141414;
+            --accent-main: #ca2b2f; /* Merah sesuai logo */
+            --accent-hover: #a82225;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-line: #2a2a2a;
+            
+            /* Social Colors */
+            --wa-color: #25D366;
+            --ig-color: #E1306C;
+            --maps-color: #4285F4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-deep);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-line);
+            backdrop-filter: blur(12px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 15px;
+        }
+
+        .nav-logo {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border-radius: 8px; /* Sedikit membulat agar elegan */
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--accent-main);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links li a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 1)), 
+                        url('https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-main);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            background-color: var(--accent-main);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid var(--accent-main);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-main);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--accent-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        /* Services */
+        .services {
+            background-color: var(--bg-deep);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-line);
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: left;
+        }
+        
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0%;
+            height: 4px;
+            background-color: var(--accent-main);
+            border-radius: 0 0 8px 8px;
+            transition: width 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--border-line);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .service-card:hover::after {
+            width: 100%;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-main);
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .price-tag {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--accent-main);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Order / Links Section */
+        .link-section {
+            background-color: var(--bg-card);
+            border-top: 1px solid rgba(255,255,255,0.02);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .link-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            background-color: var(--bg-deep);
+            border: 1px solid var(--border-line);
+            transition: all 0.3s ease;
+        }
+
+        .link-btn-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .link-btn i.main-icon {
+            font-size: 1.8rem;
+        }
+
+        .link-btn i.arrow-icon {
+            color: var(--text-muted);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .link-btn:hover {
+            border-color: var(--accent-main);
+            transform: translateX(5px);
+        }
+        
+        .link-btn:hover i.arrow-icon {
+            transform: translateX(10px);
+            color: var(--accent-main);
+        }
+        
+        /* Location Header within Links */
+        .location-header {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin: 20px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .location-header::before, .location-header::after {
+            content: "";
+            height: 1px;
+            background-color: var(--border-line);
+            flex-grow: 1;
+            max-width: 100px;
+        }
+
+        /* Specific Link Colors */
+        .btn-wa:hover .main-icon { color: var(--wa-color); }
+        .btn-ig:hover .main-icon { color: var(--ig-color); }
+        .btn-maps:hover .main-icon { color: var(--maps-color); }
+        .btn-tiktok:hover .main-icon { color: #ffffff; }
+
+        /* Vibe/Gallery */
+        .gallery {
+            background-color: var(--bg-deep);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 4/5;
+        }
+        
+        .gallery-img-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(202, 43, 47, 0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .gallery-img-container:hover::before {
+            opacity: 1;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(110%) grayscale(20%);
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        
+        .gallery-img-container:hover .gallery-img {
+            transform: scale(1.1);
+            filter: contrast(120%) grayscale(0%);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050505;
+            padding: 60px 5% 30px;
+            text-align: center;
+            border-top: 1px solid var(--border-line);
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--border-line);
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            background-color: var(--accent-main);
+            border-color: var(--accent-main);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .logo-text {
+                display: none; /* Sembunyikan teks di mobile agar rapi, hanya logo gambar */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-container">
+            <img src="electrocut.jpg" alt="Electrocut Logo" class="nav-logo">
+            <div class="logo-text">Electro<span>Cut</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#booking">Reservasi</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+        </ul>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Gaya <span class="highlight">Berani.</span><br>Potongan Presisi.</h1>
+            <p>Mendefinisikan ulang standar grooming pria modern. Potongan fade tajam, gaya kekinian, dan pelayanan berkelas yang meningkatkan kepercayaan diri Anda.</p>
+            <a href="#booking" class="btn"><i class="fas fa-calendar-check"></i> Pesan Jadwal</a>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <h2 class="section-title">Layanan Kami</h2>
+        <p class="section-subtitle">Kualitas Maksimal</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-cut service-icon"></i>
+                <h3>Precision Cut</h3>
+                <p>Potongan rambut modern dengan detail fade yang presisi, disesuaikan dengan bentuk wajah dan gaya hidup Anda.</p>
+                <div class="price-tag">Mulai Rp 35.000</div>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tint service-icon"></i>
+                <h3>Hair Coloring</h3>
+                <p>Ubah gaya Anda dengan warna rambut terang, 'bleach', atau warna 'ash' menggunakan produk premium yang aman.</p>
+                <div class="price-tag">Mulai Rp 80.000</div>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-magic service-icon"></i>
+                <h3>Fresh Grooming</h3>
+                <p>Layanan merapikan jenggot dengan pisau cukur tajam, disertai handuk hangat untuk kesegaran kulit wajah.</p>
+                <div class="price-tag">Mulai Rp 25.000</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINKTREE ALTERNATIVE SECTION -->
+    <section class="link-section" id="booking">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <p class="section-subtitle">Pilih Platform Reservasi</p>
+        
+        <div class="link-container">
+            <a href="https://wa.me/+6288211601844" class="link-btn btn-wa" target="_blank">
+                <div class="link-btn-left">
+                    <i class="fab fa-whatsapp main-icon"></i>
+                    <span>Booking via WhatsApp</span>
+                </div>
+                <i class="fas fa-arrow-right arrow-icon"></i>
+            </a>
+            
+            <a href="https://www.instagram.com/electrocut.id" class="link-btn btn-ig" target="_blank">
+                <div class="link-btn-left">
+                    <i class="fab fa-instagram main-icon"></i>
+                    <span>Follow Instagram</span>
+                </div>
+                <i class="fas fa-arrow-right arrow-icon"></i>
+            </a>
+            
+            <a href="https://www.tiktok.com/@electrocutbarbers" class="link-btn btn-tiktok" target="_blank">
+                <div class="link-btn-left">
+                    <i class="fab fa-tiktok main-icon"></i>
+                    <span>Lihat Gaya di TikTok</span>
+                </div>
+                <i class="fas fa-arrow-right arrow-icon"></i>
+            </a>
+            
+            <div class="location-header">Lokasi Cabang</div>
+            
+            <!-- Lokasi 1 -->
+            <a href="https://www.google.co.id/maps/place/Electrocut+Barbershop/@-6.2471345,106.8511541,18z/data=!3m1!4b1!4m6!3m5!1s0x2e69f37412e39fb5:0xb4a220b8e4cb5e79!8m2!3d-6.2471345!4d106.8511541!16s%2Fg%2F11nnlqv_vz?hl=id-id&entry=ttu&g_ep=EgoyMDI2MDcwNy4wIKXMDSoASAFQAw%3D%3D" class="link-btn btn-maps" target="_blank">
+                <div class="link-btn-left">
+                    <i class="fas fa-map-marker-alt main-icon"></i>
+                    <span>Electrocut Pancoran</span>
+                </div>
+                <i class="fas fa-arrow-right arrow-icon"></i>
+            </a>
+            
+            <!-- Lokasi 2 -->
+            <a href="https://www.google.co.id/maps/place/Electrocut+Barbershop+Jagakarsa/@-6.3218454,106.8114719,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69ef8fe8ed902d:0xe217c5c677873cb7!8m2!3d-6.3218454!4d106.8140468!16s%2Fg%2F11s4tn2zt5?hl=id-id&entry=ttu&g_ep=EgoyMDI2MDcwNy4wIKXMDSoASAFQAw%3D%3D" class="link-btn btn-maps" target="_blank">
+                <div class="link-btn-left">
+                    <i class="fas fa-map-marker-alt main-icon"></i>
+                    <span>Electocut Jagakarsa</span>
+                </div>
+                <i class="fas fa-arrow-right arrow-icon"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">Hasil Karya</h2>
+        <p class="section-subtitle">Vibe Electrocut</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-img-container">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=80" alt="Fade Cut" class="gallery-img">
+            </div>
+            <div class="gallery-img-container">
+                <img src="https://images.unsplash.com/photo-1593702295094-aea22597af65?auto=format&fit=crop&w=600&q=80" alt="Barbershop" class="gallery-img">
+            </div>
+            <div class="gallery-img-container">
+                <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" alt="Beard Trim" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            <img src="electrocut.jpg" alt="Electrocut Logo">
+            Electro<span>Cut</span>
+        </div>
+        <div class="social-links">
+            <a href="https://instagram.com/electrocutbarbershop"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2026 Electrocut Barbershop. Hak Cipta Dilindungi.</p>
+    </footer>
+
+</body>
+</html>
