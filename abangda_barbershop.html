@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abangda Barbershop | Premium Haircut & Grooming</title>
+    
+    <!-- Menggunakan font Oswald untuk kesan Barbershop yang maskulin & klasik, dan Poppins untuk body -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --accent-gold: #d4af37;
+            --accent-gold-hover: #b5952f;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+            
+            /* Social Colors */
+            --wa-color: #25D366;
+            --ig-color: #E1306C;
+            --maps-color: #4285F4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+            background-color: var(--bg-dark);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            max-height: 60px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 5px; /* Sedikit membulat jika logonya kotak */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(18,18,18,0.9), rgba(18,18,18,0.6)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            max-width: 800px;
+        }
+
+        .hero h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        /* Section Global */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--accent-gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--bg-card);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--bg-dark);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Linktree Alternative / Order Links */
+        .link-section {
+            background-color: var(--bg-dark);
+            text-align: center;
+        }
+
+        .link-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            padding: 18px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-btn i {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .link-btn:hover {
+            border-color: var(--accent-gold);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .link-btn:hover i {
+            transform: scale(1.2);
+        }
+
+        .btn-wa:hover { background-color: rgba(37, 211, 102, 0.1); border-color: var(--wa-color); color: var(--wa-color); }
+        .btn-ig:hover { background-color: rgba(225, 48, 108, 0.1); border-color: var(--ig-color); color: var(--ig-color); }
+        .btn-maps:hover { background-color: rgba(66, 133, 244, 0.1); border-color: var(--maps-color); color: var(--maps-color); }
+
+        /* Gallery/Vibe Section */
+        .gallery {
+            background-color: var(--bg-card);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(40%);
+            transition: filter 0.3s;
+        }
+        
+        .gallery-img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            max-height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero {
+                align-items: center;
+                text-align: center;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .nav-logo {
+                max-height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Integrasi Logo Abangda di Navbar -->
+        <a href="#" class="logo-container">
+            <img src="Abangda.jpg" alt="Abangda Barbershop Logo" class="nav-logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#links">Booking</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+        </ul>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Gaya Pria <span>Sejati.</span></h1>
+        <p>Lebih dari sekadar potong rambut. Kami memberikan pengalaman grooming premium dengan hasil presisi untuk memaksimalkan kepercayaan dirimu.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <a href="#links" class="btn"><i class="far fa-calendar-check"></i> Booking Sekarang</a>
+            <a href="#services" class="btn btn-outline">Lihat Layanan</a>
+        </div>
+    </section>
+
+    <!-- LAYANAN SECTION -->
+    <section class="services" id="services">
+        <h2 class="section-title">Layanan Kami</h2>
+        <p class="section-subtitle">Premium Grooming Services</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-cut service-icon"></i>
+                <h3>Premium Haircut</h3>
+                <p>Potongan presisi dari kapster berpengalaman kami, disesuaikan dengan bentuk wajah dan gayamu. Termasuk hair wash & styling.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-magic service-icon"></i>
+                <h3>Beard Trim & Shave</h3>
+                <p>Perawatan jenggot dan kumis profesional menggunakan hot towel untuk hasil cukur yang bersih, rapi, dan menenangkan.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tint service-icon"></i>
+                <h3>Hair Color & Treatment</h3>
+                <p>Warnai rambutmu atau kembalikan kesehatan rambut dengan perawatan hair mask dan pijatan relaksasi kepala.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINKTREE ALTERNATIVE SECTION -->
+    <section class="link-section" id="links">
+        <h2 class="section-title">Connect With Us</h2>
+        <p class="section-subtitle">Pilih Platform Untuk Terhubung</p>
+        
+        <div class="link-container">
+            <a href="#" class="link-btn btn-wa" target="_blank">
+                <i class="fab fa-whatsapp" style="color: var(--wa-color);"></i>
+                Booking via WhatsApp
+            </a>
+            
+            <a href="#" class="link-btn btn-ig" target="_blank">
+                <i class="fab fa-instagram" style="color: var(--ig-color);"></i>
+                Follow Instagram Kami
+            </a>
+            
+            <a href="#" class="link-btn btn-maps" target="_blank">
+                <i class="fas fa-map-marker-alt" style="color: var(--maps-color);"></i>
+                Arahkan ke Lokasi (Google Maps)
+            </a>
+            
+            <a href="#" class="link-btn" target="_blank">
+                <i class="fab fa-tiktok"></i>
+                Lihat Gaya di TikTok
+            </a>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">Hasil Karya Kami</h2>
+        <p class="section-subtitle">The Barbershop Vibe</p>
+        
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Barbershop Cut" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Barbershop Tools" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=80" alt="Barbershop Shave" class="gallery-img">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <img src="Abangda.jpg" alt="Abangda Logo" class="footer-logo">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2026 Abangda Barbershop. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
