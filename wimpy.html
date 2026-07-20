@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wimpy Sport & Cafe | Premium Experience</title>
+    
+    <!-- Fonts: Fredoka One (Logo/Headings) & Poppins (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Wimpy Brand Colors */
+            --w-red: #e41d24;
+            --w-blue: #00b1eb;
+            --w-yellow: #ffea00;
+            --w-dark: #121212;
+            --bg-light: #f4f7f6;
+            --text-dark: #1a1a1a;
+            --text-muted: #666;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .logo-text {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--white);
+            transition: 0.4s;
+        }
+        .logo-text span { color: var(--w-yellow); }
+        
+        header.scrolled .logo-text { color: var(--w-dark); }
+        header.scrolled .logo-text span { color: var(--w-red); }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        header.scrolled .nav-links a { color: var(--text-dark); font-weight: 600; }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0%; height: 3px;
+            background: var(--w-yellow);
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        header.scrolled .nav-links a::after { background: var(--w-blue); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .btn-header {
+            background: var(--w-red);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Fredoka One', cursive;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(228, 29, 36, 0.3);
+            display: inline-block;
+        }
+
+        .btn-header:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(228, 29, 36, 0.4);
+            background: #c7161b;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Mencegah gambar slider yang membesar keluar area */
+        }
+
+        /* Hero Background Slider */
+        .hero-bg-slider {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg-slider .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 18, 18, 0.5), rgba(18, 18, 18, 0.8)); /* Efek gelap agar teks terbaca */
+            z-index: 2;
+        }
+
+        .hero-bg-slider img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0;
+            /* Efek Ken Burns (Fade + Zoom) */
+            animation: heroFadeZoom 16s infinite;
+        }
+
+        /* Durasi 16 detik untuk 4 gambar (masing-masing 4 detik) */
+        .hero-bg-slider img:nth-child(1) { animation-delay: 0s; }
+        .hero-bg-slider img:nth-child(2) { animation-delay: 4s; }
+        .hero-bg-slider img:nth-child(3) { animation-delay: 8s; }
+        .hero-bg-slider img:nth-child(4) { animation-delay: 12s; }
+
+        @keyframes heroFadeZoom {
+            0% { opacity: 0; transform: scale(1); }
+            5% { opacity: 1; }
+            25% { opacity: 1; }
+            30% { opacity: 0; transform: scale(1.05); } /* Gambar sedikit membesar saat tampil */
+            100% { opacity: 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3; /* Di atas overlay dan gambar */
+            max-width: 900px;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.2s forwards;
+        }
+
+        .hero-subtitle {
+            color: var(--w-yellow);
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 5.5rem;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span { color: var(--w-blue); }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* --- QUICK INFO BAR (Floating) --- */
+        .quick-info {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            max-width: 1000px;
+            background: var(--white);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-around;
+            padding: 30px 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            z-index: 10; /* Tetap di atas hero slider */
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-icon {
+            width: 50px; height: 50px;
+            background: rgba(0, 177, 235, 0.1);
+            color: var(--w-blue);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .info-text h4 { font-family: 'Fredoka One', cursive; color: var(--text-dark); font-size: 1.2rem; }
+        .info-text p { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- INTRO SECTION --- */
+        .intro {
+            padding: 100px 5% 50px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-text { flex: 1; }
+        .intro-text h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: var(--w-dark);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .intro-text h2 span { color: var(--w-red); }
+        .intro-text p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
+
+        .intro-image {
+            flex: 1;
+            position: relative;
+        }
+        .intro-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0px var(--w-yellow);
+        }
+
+        /* --- HORIZONTAL FACILITIES SLIDER (UB SPORT STYLE) --- */
+        .facilities-carousel {
+            padding: 80px 0 100px;
+            background: var(--white);
+            position: relative;
+        }
+
+        .fc-header {
+            padding: 0 5%;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .fc-header h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: var(--w-dark);
+        }
+        
+        .fc-header p {
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Container for horizontal scrolling */
+        .fc-track {
+            display: flex;
+            gap: 30px;
+            padding: 20px 5%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        .fc-track::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+
+        /* The Card */
+        .fc-card {
+            flex: 0 0 85%;
+            max-width: 1000px;
+            height: 550px;
+            border-radius: 24px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            scroll-snap-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        /* Dark Gradient Overlay for readability */
+        .fc-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+        }
+
+        .fc-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fc-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Top part of card */
+        .fc-top {
+            display: flex;
+            justify-content: space-between;
+            color: var(--white);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        .fc-top-icon {
+            font-size: 2rem;
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        /* Bottom part of card */
+        .fc-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .fc-bottom-left {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .fc-bottom-right {
+            text-align: right;
+            max-width: 600px;
+        }
+
+        .fc-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-shadow: 2px 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Deskripsi dan Button Fixed Area */
+        .fc-desc-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px; /* Jarak aman antara teks dan tombol */
+        }
+
+        .fc-desc {
+            color: #f0f0f0;
+            font-size: 1.05rem;
+            margin: 0;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* --- CONTACT / CONNECT SECTION --- */
+        .contact-section {
+            padding: 80px 5%;
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: var(--w-blue);
+        }
+
+        .c-icon { font-size: 2.5rem; }
+        .card-wa:hover .c-icon { color: #25D366; }
+        .card-ig:hover .c-icon { color: #E1306C; }
+        .card-maps:hover .c-icon { color: #ea4335; }
+
+        .c-text h4 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; }
+        .c-text p { color: var(--text-muted); }
+
+        /* CONTACT VISUAL AUTOMATIC SLIDESHOW CSS */
+        .contact-visual {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 30px;
+            box-shadow: -20px 20px 0px rgba(0, 177, 235, 0.2);
+            background: var(--bg-light);
+        }
+
+        .contact-visual img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px;
+            opacity: 0;
+            animation: slideCrossFade 16s infinite;
+        }
+
+        .contact-visual img:nth-child(1) { animation-delay: 0s; }
+        .contact-visual img:nth-child(2) { animation-delay: 4s; }
+        .contact-visual img:nth-child(3) { animation-delay: 8s; }
+        .contact-visual img:nth-child(4) { animation-delay: 12s; }
+
+        @keyframes slideCrossFade {
+            0% { opacity: 0; }
+            5% { opacity: 1; }
+            25% { opacity: 1; }
+            30% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* --- FLOATING WA BUTTON --- */
+        .fab-wa {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 60px; height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            text-decoration: none;
+            transition: 0.3s;
+            animation: bounce 2s infinite;
+        }
+        .fab-wa:hover { transform: scale(1.1); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--w-dark);
+            color: var(--white);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-logo { font-family: 'Fredoka One', cursive; font-size: 2.5rem; margin-bottom: 20px; }
+        .footer-logo span { color: var(--w-red); }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3.5rem; }
+            .intro { flex-direction: column; padding-top: 80px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            
+            /* Mobile Carousel Adjustments */
+            .fc-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .fc-card { flex: 0 0 92%; height: 600px; padding: 25px; }
+            .fc-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .fc-bottom-right { text-align: left; }
+            .fc-desc-box { align-items: flex-start; }
+            .fc-title { font-size: 2.8rem; }
+            
+            .contact-visual { aspect-ratio: 1/1; margin-top: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="navbar">
+        <a href="#" class="logo">
+            <img src="image_fc9a8c.png" alt="Wimpy" onerror="this.src='https://via.placeholder.com/50x50/e41d24/ffffff?text=W'">
+            <div class="logo-text">WIMPY<span>.</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#fasilitas">Fasilitas</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <a href="https://wa.me/" class="btn-header">Book Now</a>
+    </header>
+
+    <!-- Hero Section with Automatic Slideshow -->
+    <section class="hero" id="home">
+        <!-- Background Slider Container -->
+        <div class="hero-bg-slider">
+            <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1920&q=80" alt="Swimming Pool">
+            <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1920&q=80" alt="Badminton">
+            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1920&q=80" alt="Arena Futsal">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1920&q=80" alt="Cafe & Resto">
+            
+            <!-- Overlay Gelap agar Teks Terbaca -->
+            <div class="overlay"></div>
+        </div>
+
+        <!-- Hero Text Content -->
+        <div class="hero-content">
+            <span class="hero-subtitle">Premium Sport & Cafe Center</span>
+            <h1>Level Up Your <span>Lifestyle.</span></h1>
+            <p>Rasakan pengalaman terbaik berolahraga, berenang, dan bersantai bersama orang terdekat dalam satu kawasan eksklusif di Wimpy.</p>
+            <a href="#fasilitas" class="btn-header" style="background: var(--w-yellow); color: var(--w-dark); padding: 15px 35px; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(255, 234, 0, 0.3);">Jelajahi Fasilitas</a>
+        </div>
+    </section>
+
+    <!-- Quick Info Floating (Moved slightly to accommodate absolute bg) -->
+    <div class="quick-info">
+        <div class="info-item">
+            <div class="info-icon"><i class="fas fa-swimming-pool"></i></div>
+            <div class="info-text">
+                <h4>Pool Area</h4>
+                <p>Standard & Kids Pool</p>
+            </div>
+        </div>
+        <div class="info-item">
+            <div class="info-icon" style="color: var(--w-red); background: rgba(228, 29, 36, 0.1);"><i class="fas fa-coffee"></i></div>
+            <div class="info-text">
+                <h4>Cafe & Resto</h4>
+                <p>Cozy Space & Good Food</p>
+            </div>
+        </div>
+        <div class="info-item">
+            <div class="info-icon" style="color: var(--w-yellow); background: rgba(255, 234, 0, 0.2);"><i class="fas fa-ice-cream"></i></div>
+            <div class="info-text">
+                <h4>Ice Cream</h4>
+                <p>Sweet Treats Corner</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro -->
+    <section class="intro" id="about">
+        <div class="intro-text reveal">
+            <h2>Bukan Sekadar <span>Sport Center.</span></h2>
+            <p>Kami merancang Wimpy untuk menjadi tempat singgah favorit Anda. Setelah lelah menguras keringat di area olahraga atau kolam renang, Anda bisa langsung memesan kopi seduh segar, menikmati es krim pelepas dahaga, dan mengisi tenaga kembali di restoran kami.</p>
+            <p><b>Fasilitas kebersihan prima, area parkir luas, dan suasana yang nyaman.</b></p>
+        </div>
+        <div class="intro-image reveal">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Wimpy Cafe Atmosphere">
+        </div>
+    </section>
+
+    <!-- NEW UB-STYLE CAROUSEL (FASILITAS WIMPY) -->
+    <section class="facilities-carousel" id="fasilitas">
+        <div class="fc-header reveal">
+            <h2>Jelajahi <span>Fasilitas Kami</span></h2>
+            <p><i class="fas fa-arrows-alt-h"></i> Geser untuk melihat selengkapnya</p>
+        </div>
+
+        <div class="fc-track reveal">
+            
+            <!-- Card 1: SWIMMING POOL -->
+            <div class="fc-card" style="background-image: url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=80');">
+                <div class="fc-content">
+                    <div class="fc-top">
+                        <span>We are glad you are here</span>
+                        <i class="fas fa-swimmer fc-top-icon"></i>
+                    </div>
+                    <div class="fc-bottom">
+                        <div class="fc-bottom-left">WIMPY | &copy;2026</div>
+                        <div class="fc-bottom-right">
+                            <h3 class="fc-title">Swimming Pool</h3>
+                            <!-- BOX KHUSUS DESKRIPSI & BUTTON AGAR TIDAK TERPOTONG -->
+                            <div class="fc-desc-box">
+                                <p class="fc-desc">Kolam renang jernih dengan perawatan rutin. Terdapat area khusus anak-anak yang aman dan kolam dewasa untuk latihan optimal.</p>
+                                <a href="#" class="btn-header" style="background: var(--w-blue);">Cek Tarif Tiket</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: BADMINTON -->
+            <div class="fc-card" style="background-image: url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1200&q=80');">
+                <div class="fc-content">
+                    <div class="fc-top">
+                        <span>We are glad you are here</span>
+                        <i class="fas fa-medal fc-top-icon"></i>
+                    </div>
+                    <div class="fc-bottom">
+                        <div class="fc-bottom-left">WIMPY | &copy;2026</div>
+                        <div class="fc-bottom-right">
+                            <h3 class="fc-title">Badminton</h3>
+                            <div class="fc-desc-box">
+                                <p class="fc-desc">Lapangan bulu tangkis standar profesional dengan pencahayaan terang dan sirkulasi udara yang baik. Siap untuk turnamen atau main santai.</p>
+                                <a href="#" class="btn-header" style="background: var(--w-dark); color: var(--w-yellow);">Booking Lapangan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: FUTSAL -->
+            <div class="fc-card" style="background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80');">
+                <div class="fc-content">
+                    <div class="fc-top">
+                        <span>We are glad you are here</span>
+                        <i class="fas fa-futbol fc-top-icon"></i>
+                    </div>
+                    <div class="fc-bottom">
+                        <div class="fc-bottom-left">WIMPY | &copy;2026</div>
+                        <div class="fc-bottom-right">
+                            <h3 class="fc-title">Arena Futsal</h3>
+                            <div class="fc-desc-box">
+                                <p class="fc-desc">Bermain futsal makin seru di lapangan berkualitas tinggi kami. Rumput sintetis premium yang nyaman dan aman untuk meminimalisir cedera.</p>
+                                <a href="#" class="btn-header" style="background: var(--w-red);">Cek Jadwal Kosong</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: CAFE & ICE CREAM -->
+            <div class="fc-card" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80');">
+                <div class="fc-content">
+                    <div class="fc-top">
+                        <span>We are glad you are here</span>
+                        <i class="fas fa-coffee fc-top-icon"></i>
+                    </div>
+                    <div class="fc-bottom">
+                        <div class="fc-bottom-left">WIMPY | &copy;2026</div>
+                        <div class="fc-bottom-right">
+                            <h3 class="fc-title">Cafe & Resto</h3>
+                            <div class="fc-desc-box">
+                                <p class="fc-desc">Isi ulang energi Anda! Kami menyajikan kopi pilihan, makanan lezat, dan tentu saja corner es krim spesial yang disukai keluarga.</p>
+                                <a href="#" class="btn-header" style="background: var(--w-yellow); color: var(--w-dark);">Lihat Menu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Grid -->
+    <section class="contact-section" id="kontak">
+        <div class="contact-grid">
+            <div class="contact-links reveal">
+                <h2 style="font-family: 'Fredoka One'; font-size: 3rem; color: var(--w-dark); margin-bottom: 20px;">Hubungi <span style="color: var(--w-blue);">Kami</span></h2>
+                <p style="margin-bottom: 30px; color: var(--text-muted);">Punya pertanyaan soal reservasi grup, sewa lapangan, atau menu kafe? Jangan ragu hubungi kami!</p>
+                
+                <a href="https://wa.me/" target="_blank" class="contact-card card-wa">
+                    <i class="fab fa-whatsapp c-icon"></i>
+                    <div class="c-text">
+                        <h4>Chat WhatsApp</h4>
+                        <p>Respon Cepat & Booking Online</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.instagram.com/wimpy.sportcenter" target="_blank" class="contact-card card-ig">
+                    <i class="fab fa-instagram c-icon"></i>
+                    <div class="c-text">
+                        <h4>Instagram</h4>
+                        <p>@wimpy.sportcenter</p>
+                    </div>
+                </a>
+                
+                <a href="https://maps.google.com/" target="_blank" class="contact-card card-maps">
+                    <i class="fas fa-map-marker-alt c-icon"></i>
+                    <div class="c-text">
+                        <h4>Navigasi Lokasi</h4>
+                        <p>Dapatkan Rute via Google Maps</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="contact-visual reveal">
+                <!-- 4 Gambar Fasilitas yang akan bergerak bergantian secara otomatis (Slideshow Fade) -->
+                <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80" alt="Swimming Pool">
+                <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80" alt="Badminton">
+                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80" alt="Arena Futsal">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cafe & Resto">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAB WhatsApp -->
+    <a href="https://wa.me/" class="fab-wa" target="_blank" title="Hubungi Kami">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">WIMPY<span>.</span></div>
+        <p style="color: #888;">Sport Center, Swimming Pool, Badminton, Futsal, Cafe & Resto.</p>
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #555;">&copy; 2026 Wimpy Sport & Cafe. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+        reveals.forEach(reveal => revealOnScroll.observe(reveal));
+    </script>
+</body>
+</html>
